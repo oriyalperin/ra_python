@@ -22,8 +22,7 @@ def breadth_first_search(start, end, neighbor_function: Callable):
 
 
     """
-    #if start == end:
-     #   return [start]
+
     que = []
     visited = []
     prev = {}
@@ -60,23 +59,3 @@ def bfs_path(prev: dict, path: list, start, node):
         return path
     return bfs_path(prev, path, start, prev[node])
 
-
-def four_neighbors(node: tuple):
-    x, y = node[0], node[1]
-    return [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
-
-
-friends = {"yonatan": ["oriya", "noa", "shmuel", "yizhak", "shraga"],
-           "oriya": ["noa", "orian", "yonatan", "yossi"],
-           "yizhak": ["noa", "yonatan", "shmuel", "shraga"],
-           "noa": ["orian", "oriya", "yonatan", "shmuel", "yossi", "shraga", "yizhak"],
-           "shraga": ["noa", "yonatan", "shmuel", "yizhak", "tzabari"],
-           "yossi": ["oriya", "orian", "noa"],
-           "tsabari": ["shraga"],
-           "orian": ["oriya", "noa", "sapir"],
-           "shmuel": ["noa", "shraga", "yizhak", "yonatan"],
-           "sapir": ["orian"]}
-
-print(breadth_first_search("sapir", "tzabari", lambda item: friends[item]))
-
-# print(breadth_first_search((1, 2), (5, 6), four_neighbors))

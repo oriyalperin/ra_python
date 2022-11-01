@@ -25,17 +25,3 @@ def safe_call(f: Callable, **kwargs):
 
     # call f with the given arguments if compatibility is existed
     return f(**kwargs)
-
-
-
-
-
-
-def chain(str1: str, str2: str):
-    print(str1 + " " + str2)
-
-
-# safe_call(f=pow, x=2.5, p=1)
-#safe_call(f=chain, str1="Im", str2="tiered")
-# safe_call(f=chain, str1="no", str2=1)
-# safe_call(fun, x=5, y="a", z={})
