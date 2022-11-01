@@ -1,4 +1,3 @@
-import doctest
 import unittest
 from q2 import breadth_first_search
 
@@ -49,16 +48,12 @@ class MyTestCase(unittest.TestCase):
         path = [(1,1)]
         self.assertEqual(path, breadth_first_search((1,1), (1, 1), four_neighbors_x))
 
-
-
         def four_neighbors_y(node: tuple):
             x, y = node[0], node[1]
             return [(x, y - 1), (x, y + 1), (x - 1, y), (x + 1, y)]
 
         path = [(1, 2), (1, 3), (1, 4), (1, 5), (2, 5), (3, 5), (4, 5)]
         self.assertEqual(path, breadth_first_search((1, 2), (4, 5), four_neighbors_y))
-
-
 
 
 if __name__ == '__main__':

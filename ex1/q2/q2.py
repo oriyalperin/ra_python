@@ -9,6 +9,18 @@ def breadth_first_search(start, end, neighbor_function: Callable):
     :param end: the destination node (any data structure)
     :param neighbor_function: a function that finds the neighbors of a given node, and returns a list of them.
     :return: a path between the start node and the end node, if exist one. otherwise - empty list.
+
+    Example: find a path between two 2D vectors, by vertical and horizontal steps.
+
+        >>> start = (1,2)
+        >>> end = (4,5)
+        >>> def neighbor_function(node):
+        ...     x, y = node[0], node[1]
+        ...     return [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
+        >>> print(breadth_first_search(start,end,neighbor_function))
+        [(1, 2), (2, 2), (3, 2), (4, 2), (4, 3), (4, 4), (4, 5)]
+
+
     """
     #if start == end:
      #   return [start]

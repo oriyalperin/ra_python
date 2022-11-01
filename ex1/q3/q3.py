@@ -1,4 +1,3 @@
-
 def sort(struct):
     """
     deeply sort the given structure in recursion.
@@ -13,7 +12,7 @@ def sort(struct):
         if typ == dict:
             sorted_struct = dict()
             for k, v in struct.items():
-                sorted_struct[k] = sort(v)
+                sorted_struct[sort(k)] = sort(v)
             sorted_struct = sorted(sorted_struct.items())
         elif typ == set:
             sorted_struct = set()
@@ -39,12 +38,7 @@ def print_sorted(struct):
     """
     print(sort(struct))
 
-
-z=set()
-z.add(3)
-z.add(1)
-z.add(7)
-
-y = {"s": 4, "a": (1, 4, 2)}
-x = {"d":z,"a": 5, "c": 6, "b": [1, 3, 2, 4]}
-print_sorted(x)
+# y = {"s": 4, "a": (1, 4, 2)}
+# x = {"d": {3, 1, 7}, "a": 5, "c": 6, "b": [1, 3, 2, 4]}
+# print_sorted(x)
+# z = [(3, 2), {2, 4, 'x'}, ['d', 'a']]

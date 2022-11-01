@@ -21,20 +21,14 @@ def safe_call(f: Callable, **kwargs):
 
         # raise an exception for wrong argument type
         if type_val != type_ann:
-            raise Exception("wrong argument type in " + arg_key +
-                            ", expected " + str(type_ann) + ", got " + str(type_val))
+            raise TypeError()
 
     # call f with the given arguments if compatibility is existed
-    f(**kwargs)
+    return f(**kwargs)
 
 
-def fun(x: int, y: str, z: dict):
-    z[x] = y
-    print(z)
 
 
-def pow(x: int, p: float):
-    return x ** p
 
 
 def chain(str1: str, str2: str):
@@ -42,6 +36,6 @@ def chain(str1: str, str2: str):
 
 
 # safe_call(f=pow, x=2.5, p=1)
-safe_call(f=chain, str1="Im", str2="tiered")
+#safe_call(f=chain, str1="Im", str2="tiered")
 # safe_call(f=chain, str1="no", str2=1)
 # safe_call(fun, x=5, y="a", z={})
