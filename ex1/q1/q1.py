@@ -9,6 +9,18 @@ def safe_call(f: Callable, **kwargs):
     :param f: a function
     :param kwargs: the function arguments
     :return: behave like f
+
+    Example:
+    >>> def pow(x: int, p: float):
+    ...     return x ** p
+
+    >>> print(safe_call(f=pow, x=2.5, p=1))
+    Traceback (most recent call last):
+        ...
+    TypeError
+    >>> print(safe_call(f=pow, x=9, p=0.5))
+    3.0
+
     """
 
     # get f arguments type

@@ -19,7 +19,7 @@ class MyTestCase(unittest.TestCase):
             return x ** p
 
         self.assertRaises(TypeError, safe_call, f=pow, x=2.5, p=1)
-        self.assertEqual(safe_call(f=pow, x=9, p=0.5), 3)
+        self.assertEqual(safe_call(f=pow, x=9, p=0.5), 3.0)
 
     def test_chain(self):
         def chain(str1: str, str2: str):
