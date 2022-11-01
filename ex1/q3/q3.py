@@ -37,8 +37,3 @@ def print_sorted(struct):
     :return: None
     """
     print(sort(struct))
-
-# y = {"s": 4, "a": (1, 4, 2)}
-# x = {"d": {3, 1, 7}, "a": 5, "c": 6, "b": [1, 3, 2, 4]}
-# print_sorted(x)
-# z = [(3, 2), {2, 4, 'x'}, ['d', 'a']]
