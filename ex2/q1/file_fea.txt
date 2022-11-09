@@ -1,0 +1,3 @@
+hello, I am valid_email@addr.ess
+hey there, I am -invalid__email.@addres.s
+hi, I am not-email@address
