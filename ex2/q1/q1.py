@@ -30,7 +30,7 @@ def find_email_addresses(txt_file):
         txt = f.read()
     poss = re.findall(r'[^\s]+@[^\s]+\.[^\s]+', txt)
     for word in poss:
-        if re.match(r'[\w][\w.-_]+[\w]@[\w-]+\.[\w]{2,}', word) and re.match(r'(?!.*[\.-_][\.-_])', word):
+        if re.match(r'[\w]+[.-_]*[\w]+@[\w-]+\.[\w]{2,}', word) and re.match(r'(?!.*[\.-_][\.-_])', word):
             valid.append(word)
         else:
             invalid.append(word)
