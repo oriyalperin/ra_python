@@ -1,10 +1,36 @@
-def bounded_subsets(S, C):
-    def bss_rec(first, i):
-        yield first
+def bounded_subsets(S: list, C: int):
+    """
+    generator of all S subsets that their sum is up to C.
+    :param S: list of positive numbers
+    :param C: a positive number
+
+    >>> for s in bounded_subsets(range(1, 5), 5):
+    ...     print(s)
+    []
+    [1]
+    [1, 2]
+    [1, 3]
+    [1, 4]
+    [2]
+    [2, 3]
+    [3]
+    [4]
+    """
+
+    def bss_rec(subset, i):
+        """
+        inner generator. find the next item recursively.
+        develop each subset by using the previous relevant subset and the next item in S.
+        if current subset sum > C, then we stop developing this subset.
+
+        :param subset: previous subset
+        :param i: next item index
+        """
+        yield subset
         for k in range(i, len(S)):
-            subset_sum = sum(first) + S[k]
+            subset_sum = sum(subset) + S[k]
             if subset_sum <= C:
-                f = first.copy()
+                f = subset.copy()
                 f.append(S[k])
                 yield from bss_rec(f, k + 1)
             else:
@@ -15,15 +41,49 @@ def bounded_subsets(S, C):
 
 
 def bounded_subsets2(S, C):
-    def bss_rec(first, i, j):
-        if S[j] - 1 < sum(first):
-            yield first
+    """
+    generator of all S subsets that their sum is up to C, ordered by the subset sum.
+    pass all S items and develop all subsets that their sum < current S item.
+    :param S: list of positive numbers
+    :param C: a positive number
+
+    tests:
+
+    >>> for s in bounded_subsets2(range(1, 6), 5):
+    ...     print(s)
+    []
+    [1]
+    [2]
+    [1, 2]
+    [3]
+    [1, 3]
+    [4]
+    [1, 4]
+    [2, 3]
+    [5]
+    """
+
+    def bss_rec(subset, i, j):
+        """
+        inner generator. find the next item recursively.
+        develop each subset by using the previous relevant subset and the next item in S.
+        if current subset sum > C, then we stop developing this subset.
+
+
+        :param subset: previous subset
+        :param i: next item index
+        :param j: the sum subset bound
+        """
+        if S[j] - 1 < sum(subset):
+            yield subset
         for k in range(i, len(S)):
-            subset_sum = sum(first) + S[k]
+            subset_sum = sum(subset) + S[k]
             if subset_sum <= S[j]:
-                f = first.copy()
+                f = subset.copy()
                 f.append(S[k])
                 yield from bss_rec(f, k + 1, j)
+            else:
+                break
 
     S = sorted(S)
     yield []
@@ -32,20 +92,3 @@ def bounded_subsets2(S, C):
         if S[j] > C:
             break
         yield from bss_rec([], 0, j)
-
-
-"""bss_rec([], [4, 3, 1, 2], 4, 0)
-for i in bss_rec([], [1, 2, 3, 4, 5, 6, 7], 9, 0):
-    print(i)
-for s in bss_rec([],range(50,150), 103,0):
-    print(s)
-"""
-"""for i in bounded_subsets2([1, 2, 3, 4, 5, 6, 7], 9):
-    print(i)"""
-
-for s in bounded_subsets2(range(50, 150), 103):
-    print(s)
-for s in zip(range(5), bounded_subsets(range(100), 1000000000000)):
-    print(s)
-for s in bounded_subsets2(range(100), 1000000000000):
-    print(s)
