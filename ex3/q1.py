@@ -74,11 +74,11 @@ def bounded_subsets2(S, C):
         :param i: next item index
         :param j: the sum subset bound
         """
-        if S[j] - 1 < sum(subset):
+        if valueof(j) - 1 < sum(subset):
             yield subset
         for k in range(i, len(S)):
             subset_sum = sum(subset) + S[k]
-            if subset_sum <= S[j]:
+            if subset_sum <= valueof(j):
                 f = subset.copy()
                 f.append(S[k])
                 yield from bss_rec(f, k + 1, j)
@@ -86,9 +86,15 @@ def bounded_subsets2(S, C):
                 break
 
     S = sorted(S)
+    valueof = lambda j: S[j]
     yield []
-
     for j in range(0, len(S)):
         if S[j] > C:
             break
         yield from bss_rec([], 0, j)
+
+    max_val = S[len(S) - 1]
+    if C > max_val:
+        valueof = lambda j: j
+        for j in range(max_val, C + 1):
+            yield from bss_rec([], 0, j)
