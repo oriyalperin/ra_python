@@ -25,22 +25,17 @@ def my_timer(orig_func):
 
 def eq_generator(sizes: list):
     for size in sizes:
-        size_eq(size)
-
-
-def size_eq(size):
-    left = np.random.randint(1, 30, size=(size, size))
-    right = np.random.randint(1, 30, size=size)
-    print(left, right)
-    sol_np = solved_by_np(left, right)
-    print(f"numpy solution: {sol_np}")
-    x = cp.Variable(shape=(size, 1), name="x")
-    B = np.array([[item] for item in right])
-    constraints = [cp.matmul(left, x) == B]
-    objective = cp.Minimize(cp.sum(x, axis=0))
-    solved_by_cp(constraints, objective)
-    print(f"cvxpy solution: {x.value}")
-
+        left = np.random.randint(1, 30, size=(size, size))
+        right = np.random.randint(1, 30, size=size)
+        print(left, right)
+        sol_np = solved_by_np(left, right)
+        print(f"numpy solution: {sol_np}")
+        x = cp.Variable(shape=(size, 1), name="x")
+        B = np.array([[item] for item in right])
+        constraints = [cp.matmul(left, x) == B]
+        objective = cp.Minimize(cp.sum(x, axis=0))
+        solved_by_cp(constraints, objective)
+        print(f"cvxpy solution: {x.value}")
 
 @my_timer
 def solved_by_np(left, right):
