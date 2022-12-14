@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 fig, axes = plt.subplots(2, 3, sharex=True, sharey=True, constrained_layout=True)
 
-for i, p in enumerate([0.2, 0.4, 0.5, 0.6, 0.8]):
+for i, p in enumerate([0.2, 0.3, 0.4, 0.5, 0.6, 0.8]):
     x = []
     y = []
     j = 0
@@ -26,7 +26,7 @@ for i, p in enumerate([0.2, 0.4, 0.5, 0.6, 0.8]):
         print(x, y)
         row = 0 if i < 3 else 1
         col = i % 3
-        axes[row, col].plot(x, y,marker='o', linestyle='-', color='r',)
+        axes[row, col].plot(x, y, marker='o', linestyle='-', color='r', )
         axes[row, col].set_title(f"p: {p}")
 plt.xticks(x)
 fig.supxlabel('n')
